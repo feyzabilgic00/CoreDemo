@@ -17,6 +17,10 @@ builder.Services.AddScoped<DbContext, Context>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(EfGenericRepositoryBase<>));
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
+builder.Services.AddScoped<IBlogService, BlogManager>();
+builder.Services.AddScoped<IBlogDal, EfBlogDal>();
+builder.Services.AddScoped<ICommentService, CommentManager>();
+builder.Services.AddScoped<ICommentDal, EfCommentDal>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
