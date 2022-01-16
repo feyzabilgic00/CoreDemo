@@ -18,6 +18,7 @@ namespace CoreDemo.Controllers
         }
         public PartialViewResult CommentListByBlog(int id)
         {
+            ViewBag.Id = id;
             var comments = _commentService.GetComments(id);
             return PartialView(comments);
         }

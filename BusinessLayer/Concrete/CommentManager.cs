@@ -25,12 +25,12 @@ namespace BusinessLayer.Concrete
 
         public Comment GetComment(int id)
         {
-            throw new NotImplementedException();
+            return _commentDal.GetById(x => x.Id == id);
         }
 
         public List<Comment> GetComments(int id)
         {
-            return _commentDal.GetAll(x => x.Id == id);
+            return _commentDal.GetAll(x => x.Blog.Id == id);
         }
     }
 }

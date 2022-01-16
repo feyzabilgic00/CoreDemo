@@ -11,9 +11,9 @@ namespace CoreDemo.ViewComponents.Comment
         {
             _commentService = commentService;
         }
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int id)
         {
-            var values = _commentService.GetComments(1);
+            var values = _commentService.GetComments(id);
             return View(values);
         }
     }
