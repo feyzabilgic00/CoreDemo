@@ -8,19 +8,25 @@ using DataAccessLayer.Repositories;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<Context>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 // Add services to the container.
 builder.Services.AddTransient<IValidator<Writer>, WriterValidator>();
 builder.Services.AddControllersWithViews().AddFluentValidation(fv =>
 {
     fv.DisableDataAnnotationsValidation = true;
 });
+
 builder.Services.AddScoped<DbContext, Context>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(EfGenericRepositoryBase<>));
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
@@ -37,6 +43,28 @@ builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<IAboutDal, EfAboutDal>();
 builder.Services.AddScoped<IContactService, ContactManager>();
 builder.Services.AddScoped<IContactDal, EfContactDal>();
+builder.Services.AddScoped<ILoginService, LoginManager>();
+
+//builder.Services.AddSession();
+
+//Proje seviyesinde Authorize Ýþlemleri
+builder.Services.AddMvc(config =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+                 .RequireAuthenticatedUser()
+                 .Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
+});
+builder.Services.AddMvc();
+
+//Proje seviyesinde login return url oluþturuldu.
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme
+    ).AddCookie(x =>
+    {
+        x.LoginPath = "/Login/Index";
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -52,6 +80,8 @@ app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code = {0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseAuthentication();
+//app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
