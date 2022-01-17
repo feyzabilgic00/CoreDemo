@@ -7,16 +7,11 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Writer
+    public class NewsLetter
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string About { get; set; }
-        public string Image { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Mail { get; set; }
         public bool Status { get; set; }
-        public virtual ICollection<Blog> Blogs { get; set; }
     }
 }

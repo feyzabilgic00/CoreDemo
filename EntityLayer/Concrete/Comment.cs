@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         public string Content { get; set; }
         public DateTime? CommentDate { get; set; }
         public bool Status { get; set; }
+        public int BlogId { get; set; }
         public virtual Blog Blog { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace BusinessLayer.Abstract
     {
         List<Blog> GetBlogs();
         List<Blog> GetBlogListWithCategory();
+        List<Blog> GetBlogListByWriter(int id);
         Blog GetBlog(int id);
         List<Blog> GetBlogById(int id);
         void AddBlog(Blog blog);

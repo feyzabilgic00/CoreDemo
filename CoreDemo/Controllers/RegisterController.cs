@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.ValidationRules;
 using EntityLayer.Concrete;
+using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,11 @@ namespace CoreDemo.Controllers
     public class RegisterController : Controller
     {
         private readonly IWriterService _writerService;
-        public RegisterController(IWriterService writerService)
+        private readonly IValidator<Writer> _validator;
+        public RegisterController(IWriterService writerService, IValidator<Writer> validator)
         {
             _writerService = writerService;
+            _validator = validator;
         }
         [HttpGet]
         public IActionResult Index()
@@ -21,8 +24,8 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult Index(Writer writer)
         {
-            WriterValidator validationRules = new WriterValidator();
-            ValidationResult result = validationRules.Validate(writer);
+            //WriterValidator validationRules = new WriterValidator();
+            ValidationResult result = _validator.Validate(writer);
 
             if (result.IsValid)
             {

@@ -16,28 +16,28 @@
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Ad Soyad</label>
                             @*<input type="text" class="form-control" name="Name" id="validationDefault01" placeholder="" required="">*@
-                            @Html.TextBoxFor(x => x.Name)
-                            @Html.ValidationMessageFor(x => x.Name)
+                            @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.Name, null, new {@class = "text-danger"})
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom02">Mail Adresi</label>
                             @*<input type="email" class="form-control" name="Email" id="validationDefault02" placeholder="" required="">*@
-                            @Html.TextBoxFor(x => x.Email)
-                            @Html.ValidationMessageFor(x => x.Email)
+                            @Html.TextBoxFor(x => x.Email, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.Email, null, new {@class = "text-danger"})
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword1 mb-2">Şifre</label>
                             @*<input type="password" class="form-control" name="Password" id="password1" placeholder="" required="">*@
-                            @Html.TextBoxFor(x => x.Password)
-                            @Html.ValidationMessageFor(x => x.Password)
+                            @Html.TextBoxFor(x => x.Password, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.Password, null, new {@class = "text-danger"})
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword2 mb-2">Görsel Dosya Yolu</label>
                             @*<input type="text" class="form-control" name="Image" id="password2" placeholder="" required="">*@
-                            @Html.TextBoxFor(x => x.Image)
-                            @Html.ValidationMessageFor(x => x.Image)
+                            @Html.TextBoxFor(x => x.Image, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.Image, null, new {@class = "text-danger"})
                         </div>
 
                     </div>
@@ -52,7 +52,7 @@
     <br />
     <script>
         $("#btn1").click(function(){
-            swal("Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-poste bülteninden çıkmak için isterseniz mail ileti dizisini durdurabilirsiniz.");
+            swal("Site Kabul Şartları","Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-poste bülteninden çıkmak için isterseniz mail ileti dizisini durdurabilirsiniz.");
         });
     </script>
 </section>

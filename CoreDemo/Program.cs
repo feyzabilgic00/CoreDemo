@@ -31,6 +31,12 @@ builder.Services.AddScoped<ICommentService, CommentManager>();
 builder.Services.AddScoped<ICommentDal, EfCommentDal>();
 builder.Services.AddScoped<IWriterService, WriterManager>();
 builder.Services.AddScoped<IWriterDal, EfWriterDal>();
+builder.Services.AddScoped<INewsLetterService, NewsLetterManager>();
+builder.Services.AddScoped<INewsLetterDal, EfNewsLetterDal>();
+builder.Services.AddScoped<IAboutService, AboutManager>();
+builder.Services.AddScoped<IAboutDal, EfAboutDal>();
+builder.Services.AddScoped<IContactService, ContactManager>();
+builder.Services.AddScoped<IContactDal, EfContactDal>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,7 +46,9 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+//app.UseStatusCodePages();
+//Geçersiz url girilmesi dahilinde hata sayfasýna yönlendirmek için kullanýlýr
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code = {0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -50,6 +58,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Blog}/{action=Index}/{id?}");
 
 app.Run();
