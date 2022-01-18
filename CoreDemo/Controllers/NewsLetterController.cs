@@ -20,7 +20,7 @@ namespace CoreDemo.Controllers
         public PartialViewResult SubscribeMail(NewsLetter newsLetter)
         {
             newsLetter.Status = true;
-            _newsletterService.AddNewsLetter(newsLetter);
+            _newsletterService.Add(newsLetter);
             return PartialView();
         }
     }

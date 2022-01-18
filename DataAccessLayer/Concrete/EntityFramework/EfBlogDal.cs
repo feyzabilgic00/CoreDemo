@@ -2,6 +2,7 @@
 using DataAccessLayer.Repositories;
 using EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DataAccessLayer.Concrete.EntityFramework
 {
@@ -12,12 +13,12 @@ namespace DataAccessLayer.Concrete.EntityFramework
         {
             _context = context;
         }
-
-        public List<Blog> GetListWithCategory()
+        public List<Blog> GetListWithCategory(Expression<Func<Blog, bool>> filter = null)
         {
             //Include metodu ile hangi entity 'i dahil edeceksem onu 
             //include edebilmemi sağlıyor.
-            return _context.Set<Blog>().Include(b => b.Category).ToList();
+            return filter == null ? _context.Set<Blog>().Include(b => b.Category).ToList()
+                                  : _context.Set<Blog>().Include(b => b.Category).Where(filter).ToList();
         }
     }
 }

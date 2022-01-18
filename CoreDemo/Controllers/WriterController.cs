@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.Controllers
 {
@@ -16,6 +15,18 @@ namespace CoreDemo.Controllers
         public IActionResult Test()
         {
             return View();
+        }
+        public PartialViewResult WriterNavbarPartial()
+        {
+            return PartialView();
+        }
+        public PartialViewResult WriterFooterPartial()
+        {
+            return PartialView();
+        }
+        public PartialViewResult WriterHeaderPartial()
+        {
+            return PartialView();
         }
     }
 }

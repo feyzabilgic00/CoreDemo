@@ -2,12 +2,7 @@
 
 namespace BusinessLayer.Abstract
 {
-    public interface ICategoryService
+    public interface ICategoryService : IService<Category>
     {
-        List<Category> GetCategories();
-        Category GetCategory(int id);
-        void AddCategory(Category category);
-        void RemoveCategory(Category category);
-        void UpdateCategory(Category category);
     }
 }

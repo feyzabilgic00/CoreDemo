@@ -1,0 +1,43 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "AddBlog";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+<h3>Yeni Blog Girişi</h3>
+@using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
+{
+    <div class="form-row">
+        <div class="col-md-12 mb-3">
+            <label for="validationCustom01">Blog Başlığı</label>
+            @*<input type="text" class="form-control" name="Name" id="validationDefault01" placeholder="" required="">*@
+            @Html.TextBoxFor(x => x.Title, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Title, null, new {@class = "text-danger"})
+        </div>
+        <div class="col-md-12 mb-3">
+            <label for="validationCustom02">Blog Görseli</label>
+            @*<input type="email" class="form-control" name="Email" id="validationDefault02" placeholder="" required="">*@
+            @Html.TextBoxFor(x => x.Image, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Image, null, new {@class = "text-danger"})
+        </div>
+        <div class="col-md-12 mb-3">
+            <label for="validationCustom02">Blog İçeriği</label>
+            @*<input type="email" class="form-control" name="Email" id="validationDefault02" placeholder="" required="">*@
+            @Html.TextAreaFor(x => x.Content, 15, 3, new {@class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Content, null, new {@class = "text-danger"})
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="exampleInputPassword1 mb-2">Blog Küçük Görseli</label>
+            @*<input type="password" class="form-control" name="Password" id="password1" placeholder="" required="">*@
+            @Html.TextBoxFor(x => x.ThumbnailImage, new {@class = "form-control"})
+        </div>
+        <div class="form-group col-md-12">
+            <label for="exampleInputPassword2 mb-2">Kategori</label>
+            @*<input type="text" class="form-control" name="Image" id="password2" placeholder="" required="">*@
+            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.Categories, new {@class = "form-control"})
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary submit mb-4">Blog Kaydet</button>
+}

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Blog>
+@{
+    ViewData["Title"] = "BlogListByWriter";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+<h3>Yazarın Blogları</h3>
+<table class = "table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Blog Başlığı</th>
+        <th>Oluşturma Tarihi</th>
+        <th>Kategori</th>
+        <th>Durum</th>
+        <th> </th>
+        <th> </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+      <tr>
+          <th>@item.Id</th>
+          <td>@item.Title</td>
+          <td>@(((DateTime)item.CreateDate).ToString("dd-MMM-yyyy"))</td>
+          <td>@item.Category.CategoryName</td>
+          <td>@item.Status</td>
+          <td><a asp-action = "" asp-controller = "" asp-route-id = "@item.Id" class = "btn btn-danger btn-sm">Sil</a></td>
+          <td><a asp-action = "" asp-controller = "" asp-route-id = "@item.Id" class = "btn btn-warning btn-sm">Düzenle</a></td>
+      </tr>  
+    }
+</table>
+<a asp-action = "" asp-controller = "" class = "btn btn-primary">Yeni Blog Oluştur</a>

@@ -12,7 +12,7 @@ namespace CoreDemo.Controllers
         }
         public IActionResult Index()
         {
-            var abouts = _aboutService.GetAbouts();
+            var abouts = _aboutService.GetAll();
             return View(abouts);
         }
         public PartialViewResult SocialMediaAbout()

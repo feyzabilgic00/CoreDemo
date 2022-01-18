@@ -13,7 +13,7 @@ namespace CoreDemo.Controllers
         }
         public IActionResult Index()
         {
-            List<Category> categories = _categoryService.GetCategories();
+            List<Category> categories = _categoryService.GetAll();
             return View(categories);
         }
     }

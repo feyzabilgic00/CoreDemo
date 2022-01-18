@@ -12,7 +12,7 @@ namespace CoreDemo.ViewComponents.Category
         }
         public IViewComponentResult Invoke()
         {
-            var categories = _categoryService.GetCategories();
+            var categories = _categoryService.GetAll();
             return View(categories);
         }
     }

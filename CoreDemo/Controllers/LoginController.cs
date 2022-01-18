@@ -10,7 +10,7 @@ namespace CoreDemo.Controllers
     /*Proje seviyesinde tanımlamış olduğum bütün kurallardan
     muaf olması için tanımladık.*/
 
-    //[AllowAnonymous]
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly ILoginService _loginService;

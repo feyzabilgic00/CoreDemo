@@ -22,6 +22,7 @@ builder.Services.AddDbContext<Context>(options =>
 
 // Add services to the container.
 builder.Services.AddTransient<IValidator<Writer>, WriterValidator>();
+builder.Services.AddTransient<IValidator<Blog>, BlogValidator>();
 builder.Services.AddControllersWithViews().AddFluentValidation(fv =>
 {
     fv.DisableDataAnnotationsValidation = true;
