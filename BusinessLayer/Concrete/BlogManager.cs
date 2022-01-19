@@ -46,12 +46,12 @@ namespace BusinessLayer.Concrete
 
         public void Update(Blog entity)
         {
-            throw new NotImplementedException();
+            _blogDal.Update(entity);
         }
 
         public void Delete(Blog entity)
         {
-            throw new NotImplementedException();
+            _blogDal.Delete(entity);
         }
 
         public List<Blog> GetListWithCategoryByWriter(int id)

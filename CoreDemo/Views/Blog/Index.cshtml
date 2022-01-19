@@ -37,7 +37,7 @@
 								<h5 class="card-title">
 									<a asp-action = "Details" asp-controller = "Blog" asp-route-id = "@blog.Id">@blog.Title</a>
 								</h5>
-								<p class="card-text mb-3">@blog.Content.Substring(0,blog.Content.Substring(0,100).LastIndexOf(" "))...</p>
+								<p class="card-text mb-3">@blog.Content.Substring(0,blog.Content.Substring(0,10).LastIndexOf(" "))...</p>
 								<a asp-action = "Details" asp-controller = "Blog" asp-route-id = "@blog.Id" class="btn btn-primary read-m">Devamını Oku</a>
 							</div>
 						</div>	
