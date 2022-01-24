@@ -1,0 +1,25 @@
+﻿@model List<Notification>
+
+@{
+    ViewData["Title"] = "GetAllNotifications";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th> # </th>
+        <th> Bildirim </th>
+        <th> Tarih </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Details</td>
+            <td>@(((DateTime)item.Date).ToShortDateString())</td>
+        </tr>
+    }
+</table>
+
+
+

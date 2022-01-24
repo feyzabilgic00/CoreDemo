@@ -5,14 +5,17 @@ namespace CoreDemo.ViewComponents.Writer
 {
     public class WriterMessageNotification : ViewComponent
     {
-        private readonly IWriterService _writerService;
-        public WriterMessageNotification(IWriterService writerService)
+        private readonly IMessageService _messageService;
+        public WriterMessageNotification(IMessageService messageService)
         {
-            _writerService = writerService;
+            _messageService = messageService;
         }
         public IViewComponentResult Invoke()
         {
-            return View();
+            string receiver;
+            receiver = "feyzabilgic00@gmail.com";
+            var values = _messageService.GetInboxListByWriter(receiver);
+            return View(values);
         }
     }
 }

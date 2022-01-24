@@ -1,12 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Abstract;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.ViewComponents.Writer
 {
     public class WriterNotification : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly INotificationService _notificationService;
+        public WriterNotification(INotificationService notificationService)
         {
-            return View();
+            _notificationService = notificationService;
+        }
+        public IViewComponentResult Invoke(bool status = true)
+        {
+            var values = _notificationService.GetAllStatusTrue(status);
+            return View(values);
         }
     }
 }

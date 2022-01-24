@@ -21,6 +21,8 @@ builder.Services.AddDbContext<Context>(options =>
 });
 
 // Add services to the container.
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddTransient<IValidator<Writer>, WriterValidator>();
 builder.Services.AddTransient<IValidator<Blog>, BlogValidator>();
 builder.Services.AddControllersWithViews().AddFluentValidation(fv =>
@@ -45,6 +47,10 @@ builder.Services.AddScoped<IAboutDal, EfAboutDal>();
 builder.Services.AddScoped<IContactService, ContactManager>();
 builder.Services.AddScoped<IContactDal, EfContactDal>();
 builder.Services.AddScoped<ILoginService, LoginManager>();
+builder.Services.AddScoped<INotificationService, NotificationManager>();
+builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
+builder.Services.AddScoped<IMessageService, MessageManager>();
+builder.Services.AddScoped<IMessageDal, EfMessageDal>();
 
 //builder.Services.AddSession();
 
