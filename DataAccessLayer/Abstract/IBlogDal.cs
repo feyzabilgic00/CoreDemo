@@ -12,5 +12,8 @@ namespace DataAccessLayer.Abstract
     public interface IBlogDal:IGenericRepository<Blog>
     {
         List<Blog> GetListWithCategory(Expression<Func<Blog,bool>> filter = null);
+        int TotalNumberOfBlogs();
+        int NumberOfAuthorsBlogs(int writerId);
+        int NumberOfBlogsInCategory(int categoryId);
     }
 }

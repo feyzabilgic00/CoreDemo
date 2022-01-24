@@ -20,5 +20,20 @@ namespace DataAccessLayer.Concrete.EntityFramework
             return filter == null ? _context.Set<Blog>().Include(b => b.Category).ToList()
                                   : _context.Set<Blog>().Include(b => b.Category).Where(filter).ToList();
         }
+
+        public int NumberOfAuthorsBlogs(int writerId)
+        {
+            return _context.Set<Blog>().Where(x => x.WriterId == writerId).Count();
+        }
+
+        public int NumberOfBlogsInCategory(int categoryId)
+        {
+            return _context.Set<Blog>().Where(x => x.CategoryId == categoryId).Count();
+        }
+
+        public int TotalNumberOfBlogs()
+        {
+           return _context.Set<Blog>().Count();
+        }
     }
 }

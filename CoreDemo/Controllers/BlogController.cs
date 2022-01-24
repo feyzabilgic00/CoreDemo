@@ -88,18 +88,20 @@ namespace CoreDemo.Controllers
                                                    Text = c.CategoryName,
                                                    Value = c.Id.ToString()
                                                }).ToList();
-            ViewBag.Categories = categories;
 
+            //TempData["BlogCreateDate"] = blogValue.CreateDate;
+
+            ViewBag.Categories = categories;
             var blogValue = _blogService.GetById(id);
-            TempData["BlogCreateDate"] = blogValue.CreateDate;
+            
             return View(blogValue);
         }
         [HttpPost]
         public IActionResult UpdateBlog(Blog blog)
         {
             blog.WriterId = 1;
-            ViewBag.BlogCreateDate = TempData["BlogCreateDate"];
-            blog.CreateDate = ViewBag.BlogCreateDate;
+            //ViewBag.BlogCreateDate = TempData["BlogCreateDate"];
+            //blog.CreateDate = ViewBag.BlogCreateDate;
             _blogService.Update(blog);
             return RedirectToAction("BlogListByWriter");
         }

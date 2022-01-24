@@ -4,5 +4,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IWriterService : IService<Writer>
     {
+        List<Writer> GetWriterById(int id);
     }
 }
