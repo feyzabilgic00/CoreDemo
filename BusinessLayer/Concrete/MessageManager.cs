@@ -28,12 +28,12 @@ namespace BusinessLayer.Concrete
 
         public Message GetById(int id)
         {
-            throw new NotImplementedException();
+            return _messageDal.GetById(x => x.Id == id);
         }
 
-        public List<Message> GetInboxListByWriter(string receiver)
+        public List<Message> GetInboxListByWriter(int senderId)
         {
-            return _messageDal.GetAll(x => x.Receiver == receiver);
+            return _messageDal.GetListWithMessageByWriter(x => x.SenderId == senderId);
         }
 
         public void Update(Message entity)

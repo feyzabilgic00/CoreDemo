@@ -1,0 +1,22 @@
+﻿@model Message
+@{
+    ViewData["Title"] = "AddBlog";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+<h3>Mesaj Detay Sayfası</h3>
+<br />
+@Html.HiddenFor(x => x.Id)
+
+<div class="form-row">
+    <div class="col-md-12 mb-3">
+        <label for="validationCustom01">Mesaj Başlığı</label>
+        @Html.TextBoxFor(x => x.Subject, new {@class = "form-control"})
+    </div>
+    <div class="col-md-12 mb-3">
+        <label for="validationCustom02">Mesaj İçeriği</label>
+        @Html.TextAreaFor(x => x.Details,30,10, new {@class = "form-control"})
+    </div>
+</div>
+
+<button type="submit" class="btn btn-primary submit mb-4">Mesajlara Dön</button>
+

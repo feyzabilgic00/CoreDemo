@@ -4,6 +4,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IMessageService : IService<Message>
     {
-         List<Message> GetInboxListByWriter(string receiver);
+        List<Message> GetInboxListByWriter(int senderId);
     }
 }

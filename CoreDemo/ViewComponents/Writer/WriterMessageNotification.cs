@@ -12,9 +12,8 @@ namespace CoreDemo.ViewComponents.Writer
         }
         public IViewComponentResult Invoke()
         {
-            string receiver;
-            receiver = "feyzabilgic00@gmail.com";
-            var values = _messageService.GetInboxListByWriter(receiver);
+            int sender = 3;
+            var values = _messageService.GetInboxListByWriter(sender);
             return View(values);
         }
     }
