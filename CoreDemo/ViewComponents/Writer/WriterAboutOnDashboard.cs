@@ -12,7 +12,10 @@ namespace CoreDemo.ViewComponents.Writer
         }
         public IViewComponentResult Invoke()
         {
-            var values = _writerService.GetWriterById(1);
+            /* Aktif kullanıcının Name değerini almak için kullandık.  */
+            var userMail = User.Identity.Name;
+            var writerId = _writerService.GetWriter(userMail);
+            var values = _writerService.GetById(writerId);
             return View(values);
         }
     }

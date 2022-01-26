@@ -4,10 +4,12 @@ using CoreDemo.Models;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.Controllers
 {
+    [Authorize]
     public class WriterController : Controller
     {
         private readonly IWriterService _writerService;
@@ -18,9 +20,12 @@ namespace CoreDemo.Controllers
             _writerService = writerService;
             _validator = validator;
             _mapper = mapper;
-        }
+        }        
         public IActionResult Index()
         {
+            var userMail = User.Identity.Name;
+            ViewBag.UserMail = userMail;
+
             return View();
         }
         public IActionResult WriterProfile()
@@ -46,13 +51,17 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var writerValues = _writerService.GetById(1); 
-            return View(writerValues);
+            var userMail = User.Identity.Name;
+            var writerUser = _writerService.GetWriter(userMail);
+            var writerId = _writerService.GetById(writerUser);
+
+            return View(writerId);
         }
         [HttpPost]
         public IActionResult WriterEditProfile(Writer writer)
         {
             ValidationResult results = _validator.Validate(writer);
+         
             if (results.IsValid)
             {
                 writer.Image = "deneme";
@@ -76,6 +85,8 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult AddWriter(AddProfileImage writer)
         {
+            //Dosya yükleme işlemleri
+
             Writer w = new Writer();
             if (writer.Image != null)
             {

@@ -11,11 +11,13 @@ namespace CoreDemo.Controllers
     {
         private readonly IBlogService _blogService;
         private readonly ICategoryService _categoryService;
+        private readonly IWriterService _writerService;
         private readonly IValidator<Blog> _validator;
-        public BlogController(IBlogService blogService, ICategoryService categoryService, IValidator<Blog> validator)
+        public BlogController(IBlogService blogService, ICategoryService categoryService, IWriterService writerService, IValidator<Blog> validator)
         {
             _blogService = blogService;
             _categoryService = categoryService;
+            _writerService = writerService;
             _validator = validator;
         }
         public IActionResult Index()
@@ -31,7 +33,9 @@ namespace CoreDemo.Controllers
         }
         public IActionResult BlogListByWriter()
         {
-            var values = _blogService.GetListWithCategoryByWriter(1);
+            var userMail = User.Identity.Name;
+            var writerUser = _writerService.GetWriter(userMail);
+            var values = _blogService.GetListWithCategoryByWriter(writerUser);
             return View(values);
         }
         [HttpGet]
@@ -51,12 +55,16 @@ namespace CoreDemo.Controllers
         public IActionResult AddBlog(Blog blog)
         {
             ViewBag.Categories = ViewData["CategoryId"];
-            ValidationResult result = _validator.Validate(blog);    
+            ValidationResult result = _validator.Validate(blog);
+
+            var userMail = User.Identity.Name;
+            var writerId = _writerService.GetWriter(userMail);
+
             if (result.IsValid)
             {
                 blog.Status = true;
                 blog.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                blog.WriterId = 1;                
+                blog.WriterId = writerId;                
                 _blogService.Add(blog);
                 return RedirectToAction("BlogListByWriter");
             }
@@ -99,7 +107,9 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult UpdateBlog(Blog blog)
         {
-            blog.WriterId = 1;
+            var userMail = User.Identity.Name;
+            var writerId = _writerService.GetWriter(userMail);
+            blog.WriterId = writerId;
             //ViewBag.BlogCreateDate = TempData["BlogCreateDate"];
             //blog.CreateDate = ViewBag.BlogCreateDate;
             _blogService.Update(blog);
