@@ -21,6 +21,22 @@ namespace BusinessLayer.Concrete
             _categoryDal.Delete(entity);
         }
 
+        public Category EditStatus(int id)
+        {
+            var category = _categoryDal.GetById(x => x.Id == id);
+            if (category.Status == true)
+            {
+                category.Status = false;
+                _categoryDal.Update(category);
+            }
+            else
+            {
+                category.Status = true;
+                _categoryDal.Update(category);
+            }
+            return category;
+        }
+
         public List<Category> GetAll()
         {
             return _categoryDal.GetAll();

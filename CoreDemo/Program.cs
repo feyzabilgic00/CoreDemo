@@ -25,6 +25,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddTransient<IValidator<Writer>, WriterValidator>();
 builder.Services.AddTransient<IValidator<Blog>, BlogValidator>();
+builder.Services.AddTransient<IValidator<Category>, CategoryValidator>();
 builder.Services.AddControllersWithViews().AddFluentValidation(fv =>
 {
     fv.DisableDataAnnotationsValidation = true;
