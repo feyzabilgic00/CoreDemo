@@ -1,0 +1,10 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "BlogTitleListExcel";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>BlogTitleListExcel</h1>
+
+<br />
+<a class="btn btn-primary" asp-action = "ExportDynamicExcelBlogList" asp-controller = "Blog">Excel Listesini İndir</a>
